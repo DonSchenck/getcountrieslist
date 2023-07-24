@@ -34,6 +34,9 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
+
+		log.Print(country)
+
 		countries = append(countries, country)
 	}
 
