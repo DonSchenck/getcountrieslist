@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var countries = []Country{}
+var countries = Countries{}
 
 func main() {
 	// Create database handle
