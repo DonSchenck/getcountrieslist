@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -11,6 +12,7 @@ import (
 )
 
 func AllCountries(w http.ResponseWriter, r *http.Request) {
+	log.Print(countries)
 	json.NewEncoder(w).Encode(countries)
 }
 
