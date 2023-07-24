@@ -40,6 +40,8 @@ func main() {
 		countries = append(countries, country)
 	}
 
+	log.Print(countries)
+
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":8080", router))
 
