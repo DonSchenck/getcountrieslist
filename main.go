@@ -7,6 +7,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+var countries = []Country{}
+
 func main() {
 	// Create database handle
 	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
@@ -23,8 +25,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	var countries = []Country{}
 
 	for res.Next() {
 		var country Country

@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
 	"fmt"
 	"math/rand"
+	"net/http"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -18,11 +18,11 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "getcountrieslist")
 }
 
-func OneCountry(w. http.http.ResponseWriter, r *http.Request) {
+func OneCountry(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["countryId"])
-	if err == nill {
-		json.NewEncoder(w).Encode(countries[id])	
+	if err == nil {
+		json.NewEncoder(w).Encode(countries[id])
 	}
 }
 
