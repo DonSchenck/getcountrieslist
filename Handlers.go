@@ -13,11 +13,11 @@ import (
 )
 
 type Country struct {
-	countryID         int    `json:"countryid"`
-	countryName       string `json:"countryname"`
-	population        int    `json:"population"`
-	landAreaKM        int    `json:"landareakm"`
-	populationDensity int    `json:"populationdensity"`
+	countryID         int
+	countryName       string
+	population        int
+	landAreaKM        int
+	populationDensity int
 }
 
 func AllCountries(w http.ResponseWriter, r *http.Request) {
@@ -56,7 +56,6 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(countries); err != nil {
 		fmt.Println(err)
 	}
-	log.Print(countries)
 	return
 }
 
