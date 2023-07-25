@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -12,6 +13,38 @@ import (
 )
 
 func AllCountries(w http.ResponseWriter, r *http.Request) {
+
+	var countries = Countries{}
+
+	// Create database handle
+	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	res, err := db.Query("SELECT * FROM countries")
+
+	defer res.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for res.Next() {
+		var country Country
+		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Print(country)
+
+		countries = append(countries, country)
+	}
+
 	log.Print(countries)
 	json.NewEncoder(w).Encode(countries)
 	return
@@ -22,6 +55,37 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func OneCountry(w http.ResponseWriter, r *http.Request) {
+	var countries = Countries{}
+
+	// Create database handle
+	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	res, err := db.Query("SELECT * FROM countries")
+
+	defer res.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for res.Next() {
+		var country Country
+		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Print(country)
+
+		countries = append(countries, country)
+	}
+
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["countryId"])
 	if err == nil {
@@ -30,6 +94,37 @@ func OneCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func RandomCountry(w http.ResponseWriter, r *http.Request) {
+	var countries = Countries{}
+
+	// Create database handle
+	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	res, err := db.Query("SELECT * FROM countries")
+
+	defer res.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for res.Next() {
+		var country Country
+		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Print(country)
+
+		countries = append(countries, country)
+	}
+
 	json.NewEncoder(w).Encode(countries[rand.Intn(150)])
 }
 
