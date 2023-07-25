@@ -53,8 +53,10 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 		countries = append(countries, country)
 	}
 
+	if err := json.NewEncoder(w).Encode(countries); err != nil {
+		fmt.Println(err)
+	}
 	log.Print(countries)
-	json.NewEncoder(w).Encode(countries)
 	return
 }
 
