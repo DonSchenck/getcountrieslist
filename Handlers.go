@@ -19,11 +19,10 @@ type Country struct {
 	landAreaKM        int    `json:"landareakm"`
 	populationDensity int    `json:"populationdensity"`
 }
-type Countries []Country
 
 func AllCountries(w http.ResponseWriter, r *http.Request) {
 
-	var countries = Countries{}
+	var countries []*Country
 
 	// Create database handle
 	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
@@ -42,7 +41,7 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		var country Country
+		country := new(Country)
 		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
 
 		if err != nil {
@@ -64,7 +63,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func OneCountry(w http.ResponseWriter, r *http.Request) {
-	var countries = Countries{}
+	var countries []*Country
 
 	// Create database handle
 	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
@@ -83,7 +82,7 @@ func OneCountry(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		var country Country
+		country := new(Country)
 		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
 
 		if err != nil {
@@ -103,7 +102,7 @@ func OneCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func RandomCountry(w http.ResponseWriter, r *http.Request) {
-	var countries = Countries{}
+	var countries []*Country
 
 	// Create database handle
 	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
@@ -122,7 +121,7 @@ func RandomCountry(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		var country Country
+		country := new(Country)
 		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
 
 		if err != nil {
