@@ -11,9 +11,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func AllCountries(w http.ResponseWriter, r *http.Request) {
+func AllCountries(w http.ResponseWriter, r *http.Request) (Countries, error) {
 	log.Print(countries)
-	json.NewEncoder(w).Encode(countries)
+	return countries, nil
+	// json.NewEncoder(w).Encode(countries)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
