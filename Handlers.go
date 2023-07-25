@@ -12,6 +12,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type Country struct {
+	countryID         int    `json:"countryid"`
+	countryName       string `json:"countryname"`
+	population        int    `json:"population"`
+	landAreaKM        int    `json:"landareakm"`
+	populationDensity int    `json:"populationdensity"`
+}
+type Countries []Country
+
 func AllCountries(w http.ResponseWriter, r *http.Request) {
 
 	var countries = Countries{}
