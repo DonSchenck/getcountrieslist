@@ -56,6 +56,7 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(countries); err != nil {
 		fmt.Println(err)
 	}
+	log.Print("Encoding and return array of countries...")
 	json.NewEncoder(w).Encode(countries)
 }
 
