@@ -26,6 +26,7 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 
 	// Create database handle
 	db, err := sql.Open("mysql", "countries:countries@tcp(countries)/countries")
+
 	defer db.Close()
 
 	if err != nil {
@@ -57,7 +58,7 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	log.Print("Encoding and return array of countries...")
-	json.NewEncoder(w).Encode(countries)
+	json.NewEncoder(w).Encode(&countries)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
