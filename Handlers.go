@@ -56,7 +56,7 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(countries); err != nil {
 		fmt.Println(err)
 	}
-	return
+	json.NewEncoder(w).Encode(countries)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
