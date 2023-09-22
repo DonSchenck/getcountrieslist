@@ -13,11 +13,11 @@ import (
 )
 
 type Country struct {
-	countryID         int
-	countryName       string
-	population        int
-	landAreaKM        int
-	populationDensity int
+	CountryID         int
+	CountryName       string
+	Population        int
+	LandAreaKM        int
+	PopulationDensity int
 }
 
 func AllCountries(w http.ResponseWriter, r *http.Request) {
@@ -42,8 +42,8 @@ func AllCountries(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		country := new(Country)
-		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+		country := &Country{}
+		err := res.Scan(&country.CountryID, &country.CountryName, &country.Population, &country.LandAreaKM, &country.PopulationDensity)
 
 		if err != nil {
 			log.Fatal(err)
@@ -85,8 +85,8 @@ func OneCountry(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		country := new(Country)
-		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+		country := &Country{}
+		err := res.Scan(&country.CountryID, &country.CountryName, &country.Population, &country.LandAreaKM, &country.PopulationDensity)
 
 		if err != nil {
 			log.Fatal(err)
@@ -124,8 +124,8 @@ func RandomCountry(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for res.Next() {
-		country := new(Country)
-		err := res.Scan(&country.countryID, &country.countryName, &country.population, &country.landAreaKM, &country.populationDensity)
+		country := &Country{}
+		err := res.Scan(&country.CountryID, &country.CountryName, &country.Population, &country.LandAreaKM, &country.PopulationDensity)
 
 		if err != nil {
 			log.Fatal(err)
